@@ -1,0 +1,94 @@
+﻿@section scripts{
+    @Scripts.Render("~/bundles/knokout")
+    @Scripts.Render("~/bundles/rockPaperScissors")
+}
+<div class="row">
+    <div class="col-md-offset-1 col-md-3">
+        <form id="idFormPartida">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Partida</h5>
+                    <div class="form-group">
+                        <input class="form-control form-control-sm" id="idOrdem" type="text" data-bind="value: cadastroPartida.Ordem" placeholder="Informe a ordem" required>
+                    </div>
+
+                    <p class="card-subtitle mb-2 text-muted">Informe nome dos Jogadores e suas estratégias</p>
+
+                    <div class="form-group">
+                        <label for="NomeJogador1">Jogador</label>
+                        <input id="NomeJogador1" data-bind="value: cadastroPartida.NamePlayer1" class="form-control form-control-sm" type="text" placeholder="Nome" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idEstrategia">Estratégia</label>
+                        <select id="idEstrategia" data-bind="value: cadastroPartida.Strategy1" class="form-control form-control-sm" required></select>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group">
+                        <label for="NomeJogador2">Jogador</label>
+                        <input id="NomeJogador2" data-bind="value: cadastroPartida.NamePlayer2" class="form-control form-control-sm" type="text" placeholder="Nome" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idEstrategia2">Estratégia</label>
+                        <select id="idEstrategia2" data-bind="value: cadastroPartida.Strategy2" class="form-control form-control-sm" required></select>
+                    </div>
+
+                    <button type="submit" id="idAdicionar" class="btn btn-outline-primary">Adicionar</button>
+                    <button type="button" id="idLimpar" class="btn btn-outline-warning">Limpar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-offset-1 col-md-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <h2>Torneio</h2>
+                </div>
+                <div class="col-md-2">
+                    <button id="idVerificaVencedor" class="btn btn-primary btn-sm float-right" style="margin-top: 5px" type="button">
+                        Verificar Vencedor
+                    </button>
+                </div>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Ordem</th>
+                        <th>Nome Jogador</th>
+                        <th>Estratégia</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: listaPartidas">
+                    <tr>
+                        <td data-bind="text: Ordem, attr: { rowspan: 3 }"></td>
+                    </tr>
+                    <!--knockout Containerless Binding-->
+                    <!-- ko foreach: ListaJogadas -->
+                    <tr>
+                        <td data-bind="text: NamePlayer"></td>
+                        <td data-bind="text: NameStrategy"></td>
+                    </tr>
+                    <!-- /ko -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Uhuu!</h3>
+
+                <img src="~/Resources/desenho_trofeu.jpg" class="img-fluid img-thumbnail">
+
+                <h3 class="card-title" id="idMensagemVencedor"></h3>
+            </div>
+        </div>
+    </div>
+
+</div>
